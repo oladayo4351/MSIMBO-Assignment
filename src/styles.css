@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+	padding-top: 55px;
+	padding-bottom: 50px;
+}
+
+#bottom {
+	width: 100%;
+	bottom: 0px;
+}
+
+#center{
+	right: 100%;
+}
+
+.navbar-brand{
+	color: white;
+}
+.do-font-white{
+	color: white;
+}
+
+.do-width{
+	width: 100%;
+}
+
+.do-left-padding{
+	padding-left: 10px; 
+}
+
+.do-no-underline:hover{
+	text-decoration: none;
+}
+
+.do-gray{
+background-color: gray;
+}
+
+.do-black{
+	color: black;
+}
+
+.do-80-width{
+	width: 80%;
+}
+.do-absolute-right{
+	position: absolute;
+	right: 15px;
+}
+
+.do-front{
+	z-index: 2;
+}
+
+.do-border{
+	border: ridge;
+}
+
+.do-hover a:hover{
+	text-decoration: none;
+	color: red;
+}
+
+.do-margin{
+	margin-top: 5px;
+}
+
+.video-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+.video-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+
+}

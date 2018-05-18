@@ -1,0 +1,29 @@
+<nav class="row navbar navbar-dark bg-primary fixed-top">
+		<div class="container-fluid">
+			<div>
+				<a  routerLink='/user/:uid' class=" do-font-white"> <i class="fas fa-chevron-left"></i></a> 
+				<a routerLink='/user/:uid/website' class= "do-font-white container-fluid do-no-underline" ><b class="do-font-white"> Websites</b></a> 
+			</div>
+		  		<a  routerLink='/user/:uid/website/new' class= "float-right do-font-white"><i class="fas fa-plus"></i> </a>
+		</div>
+	</nav>
+
+<div class="container-fluid">
+	<ul>
+		<li class =" list-unstyled do-hover"> <a class="" routerLink='/user/:uid/website/:wid/page'>Address Book</a> <a class="float-right" routerLink='/user/:uid/website/:wid'> <i class="fas fa-cog"></i></a></li>		  
+  		<div><br>
+  		<li class ="list-unstyled  do-hover"> <a routerLink='/user/:uid/website/:wid/page'>Blogger</a> <a class="float-right" routerLink='/user/:uid/website/:wid'> <i class="fas fa-cog"></i></a></li>
+		</div><div><br>
+		<li class ="list-unstyled  do-hover"> <a routerLink='/user/:uid/website/:wid/page'>Blogging App</a> <a class="float-right" routerLink='/user/:uid/website/:wid'> <i class="fas fa-cog"></i></a></li>  
+		</div><div><br>
+		<li class ="list-unstyled  do-hover"> <a routerLink='/user/:uid/website/:wid/page'>Script Testing App</a> <a class="float-right" routerLink='/user/:uid/website/:wid'> <i class="fas fa-cog"></i></a></li>
+		</div>
+	</ul>
+</div>
+
+
+<nav class=" navbar navbar-dark bg-primary fixed-bottom">
+	<div class="do-width">
+		<a routerLink='/user/:uid' class="do-font-white float-right" ><i class="fas fa-user"></i> </a> 
+	</div>	
+</nav>

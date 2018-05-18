@@ -1,0 +1,32 @@
+<nav class=" row navbar navbar-dark fixed-top do-gray">
+		<div class="container-fluid">
+			<div>
+			<a class="do-black float-left" routerLink='/user/:uid/website/:wid/page'><i class="fas fa-chevron-left"></i></a>
+			<a class="container-fluid do-no-underline do-font-white" routerLink='/user/:uid/website/:wid/page/:pid'><b>Edit Page</b></a>
+			</div>
+			<a routerLink='/user/:uid/website/:wid/page'  class="do-black float-right"> <i class="fas fa-check"></i></a>
+		</div>	
+	</nav>
+<div class="container-fluid">
+<form>
+	<div>
+		<div class="form-group">
+			<label for="name">Name</label>
+			<input type="text" name="name" placeholder="Page Name" class="form-control">
+		</div>
+	</div>
+
+			<label for="text">Title</label>
+			<input type="text" name="text" placeholder="Page Title" class="form-control">
+			<a  class=" do-margin btn btn-danger" routerLink='/user/:uid/website/:wid/page' >Delete</a>
+			<a  class=" do-margin btn btn-success float-right" routerLink='/user/:uid/website/:wid/page'>Submit</a>
+		
+</form>
+</div>
+
+<nav class="navbar navbar-dark do-gray fixed-bottom">
+	<div class="do-width">
+		<a routerLink='/user/:uid' class=" float-right" >
+			<i class="fas fa-user"></i> </a> 
+	</div>
+</nav>

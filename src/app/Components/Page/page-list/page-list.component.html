@@ -1,0 +1,37 @@
+<nav class="row navbar navbar-dark fixed-top do-gray">
+		<div class="container-fluid">
+			<div>
+			<a class="do-black float-left" routerLink='/user/:uid/website'><i class="fas fa-chevron-left"></i></a>
+			<a class="container-fluid do-no-underline do-font-white" routerLink='/user/:uid/website/:wid/page'><b>Pages</b></a>
+			</div>
+			<a routerLink='/user/:uid/website/:wid/page/new' class="do-black float-right"><i class="fas fa-plus"></i></a>
+		</div>	
+	</nav>
+
+
+<div class="container-fluid">
+	<ul>
+		<li class =" list-unstyled do-hover" > <a routerLink ='/user/:uid/website/:wid/page/:pid/widget'  >Blog Post</a> <a class="float-right" routerLink='/user/:uid/website/:wid/page/:pid'> <i class="fas fa-cog"></i></a></li>		  
+  		<div><br>
+  		<li class ="list-unstyled do-hover" > <a routerLink ='/user/:uid/website/:wid/page/:pid/widget'>Blog</a> <a class="float-right" routerLink='/user/:uid/website/:wid/page/:pid'> <i class="fas fa-cog"></i></a></li>
+		</div>
+		<div><br>
+		<li class ="list-unstyled do-hover"> <a routerLink ='/user/:uid/website/:wid/page/:pid/widget'>Home</a> <a class="float-right" routerLink='/user/:uid/website/:wid/page/:pid'> <i class="fas fa-cog"></i></a></li>  
+		</div>
+		<div><br>
+		<li class ="list-unstyled do-hover"> <a routerLink ='/user/:uid/website/:wid/page/:pid/widget'>About</a> <a class="float-right" routerLink='/user/:uid/website/:wid/page/:pid'> <i class="fas fa-cog"></i></a></li>
+		</div>
+		<div><br>
+		<li class ="list-unstyled do-hover"> <a routerLink ='/user/:uid/website/:wid/page/:pid/widget'>Contact us</a> 
+		<a class="float-right" routerLink='/user/:uid/website/:wid/page/:pid'> <i class="fas fa-cog"></i></a></li>
+		</div>
+	</ul>
+</div>
+
+
+<nav class="navbar navbar-dark do-gray fixed-bottom">
+	<div class="do-width">
+		<a routerLink='/user/:uid' class=" float-right" >
+			<i class="fas fa-user"></i> </a> 
+	</div>
+</nav>

@@ -1,0 +1,61 @@
+<nav class="row navbar navbar-dark bg-primary fixed-top">
+	<div class="col-sm-4 d-none d-sm-block">
+		<div >
+			<a class="do-font-white" routerLink='/user/:uid/website'> <i class="fas fa-chevron-left"></i></a>
+			<a class="container-fluid do-font-white do-no-underline" routerLink='/user/:uid/website/:wid'><b class="do-font-white ">Websites</b></a>
+			<a routerLink='/user/:uid/website/new' class="do-font-white float-right"><i class="fas fa-plus"></i></a>
+		</div>
+	</div>
+	
+	<div class="col-sm-8">
+		<div class="container-fluid">
+			<a  class="do-no-underline" routerLink='/user/:uid/website/:wid'> <b class="do-font-white ">New Website</b></a>
+			<a routerLink='/user/:uid/website' class="do-font-white float-right"><i class="fas fa-check"></i></a> 
+		</div>
+	</div>
+</nav>
+
+
+<div class="row">
+	<div class="col-sm-4 d-none d-sm-block" >
+		<div class="container-fluid">
+			<ul class= "list-group">
+				<li class= "do-hover list-group-item"> <a routerLink='/user/:uid/website/:wid/page'>Address Book</a> <a class="float-right" href=""> <i class="fas fa-cog"></i></a></li>
+		  
+  				<li class= "do-hover list-group-item"> <a routerLink='/user/:uid/website/:wid/page'>Blogger</a> <a class="float-right" href=""> <i class="fas fa-cog"></i></a></li>
+		
+				<li class= "do-hover list-group-item"> <a routerLink ='/user/:uid/website/:wid/page'>Blogging App</a> <a class="float-right" href=""> <i class="fas fa-cog"></i></a></li>
+		  
+				<li class=" do-hover list-group-item"> <a routerLink ='/user/:uid/website/:wid/page'>Script Testing App</a> <a class="float-right" href=""> <i class="fas fa-cog"></i></a></li>
+		  	</ul>
+		 </div>
+	</div>
+	
+	<div class="col-sm-8">
+		<div class="container-fluid ">
+			<form>
+				<!-- Website Name -->
+				<div class="form-group ">
+					<label for="website-name"><b>Website Name</b></label>
+						<input class="border form-control btn-block" type="text" name="website-name" placeholder="Type your Website name here">
+				</div>
+			
+			<label for="website-decription"><b>Website Description</b></label>
+			<textarea class="border form-control btn-block" rows="3" placeholder="Input your description here"></textarea>
+			
+		
+			<a class=" do-margin btn btn-danger" routerLink='/user/:uid/website'>Delete</a>
+			<a class="do-margin btn btn-success float-right" routerLink='/user/:uid/website'>Submit</a>
+			</form>				
+		</div>
+	</div>
+			
+</div>
+
+<nav class="navbar navbar-dark bg-primary fixed-bottom">
+	<div class="do-width">
+		<a class=" do-font-white float-right" routerLink='/user/:uid'>
+		<i class="fas fa-user"></i> </a>	
+	</div>
+</nav>
+	
