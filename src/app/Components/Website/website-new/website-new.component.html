@@ -15,14 +15,13 @@
 	</div>
 </nav>
 
-
 <div class="row">
 	<div class="col-sm-4 d-none d-sm-block" >
 		<div class="container-fluid">
 			<ul  class= "list-group">
 				<div>
-				<li *ngFor="let website of websites" class= "do-hover list-group-item"> <a routerLink = '/user/{{uid}}/website/{{website._id}}/page'>{{website.name}}</a> <a class="float-right" routerLink='/user/{{uid}}/website/{{website._id}}'> <i class="fas fa-cog"></i></a></li>
-		  </div>
+					<li *ngFor="let website of websites" class= "do-hover list-group-item"> <a routerLink = '/user/{{uid}}/website/{{website._id}}/page'>{{website.name}}</a> <a class="float-right" routerLink='/user/{{uid}}/website/{{website._id}}'> <i class="fas fa-cog"></i></a></li>
+			  </div>
 		  	</ul>
 		 </div>
 	</div>

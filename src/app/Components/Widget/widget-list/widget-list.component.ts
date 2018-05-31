@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { WidgetService } from '../../../services/widget.service.client';
 import { Widget } from '../../../models/widget.model.client';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser'
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-widget-list',
   templateUrl: './widget-list.component.html',
@@ -22,9 +23,7 @@ widgets: Widget[];
   		this.uid = params['uid']
       this.wid = params['wid']
       this.pid = params['pid']
-      this.widgets = this.widgetService.findWidgetByPageId(this.pid)
-    
-
+      this.widgets = this.widgetService.findWidgetByPageId(this.pid) 
      
   })
 }

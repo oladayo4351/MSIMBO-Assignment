@@ -6,7 +6,7 @@
 			</div>
 			<button [disabled]='f.invalid' type="submit" form="widgetForm" routerLink='/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget' class="do-button do-black float-right"><i class="fas fa-check"></i></button>
 		</div>	
-	</nav>
+</nav>
 
 <form (ngSubmit)= 'update()' #f='ngForm' id='widgetForm' class='container-fluid'>
 	<div class="alert alert-danger" *ngIf="url.invalid && url.touched">Please enter a url!</div>
@@ -29,7 +29,6 @@
 		</div>
 		<button type='submit' [disabled]='f.invalid' class="btn btn-block btn-primary" routerLink='/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget'>Upload</button>
 		<button type='button' class="btn btn-block btn-danger"(click)='delete()'>Delete</button>
-		
 </form>
 
 <nav class="navbar navbar-dark do-gray fixed-bottom">

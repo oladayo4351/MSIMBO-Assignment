@@ -6,7 +6,7 @@
 			</div>
 			<button [disabled] ='f.invalid' type="submit" form="widgetForm"   class="do-button do-black float-right"><i class="fas fa-check"></i></button>
 		</div>	
-	</nav>
+</nav>
 
 <form  class= "container-fluid" (ngSubmit)= 'update()' #f='ngForm' id='widgetForm'>
 	<div class="alert alert-danger" *ngIf="text.invalid && text.touched">Please enter text for the widget!</div>
