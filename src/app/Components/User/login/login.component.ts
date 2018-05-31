@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms'
 import { UserService } from '../../../services/user.service.client'
 import { User } from '../../../models/user.model.client'
-
+import { Router } from '@angular/router';
+import {ActivatedRoute  } from '@angular/router'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,17 +21,25 @@ errorFlag: boolean;
 errorMsg = 'Invaild username or password!';
 
 
-  constructor(private userService: UserService) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {
 
    }
 
   ngOnInit() {
-  
   }
 
  login(){
- 	this.username = this.loginForm.value.username
+ 	this.username = this.loginForm.value.username;
+ 	this.password = this.loginForm.value.password;
 	
+
+	const user: User = this.userService.findUserByCredentials(this.username,this.password);
+	if (user){
+		//navigate to profile
+		this.router.navigate(['/user/'+user._id])
+	}else {
+		this.errorFlag = true
+	}
 } 
 
 }

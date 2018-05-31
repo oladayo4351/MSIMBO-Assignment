@@ -1,18 +1,25 @@
 <div class= "container">
 	<h1 align="center" >Register</h1>
-<form>
+	<div class='alert-danger alert' *ngIf="username.invalid && username.touched"> Please Enter a Username! </div>
+	<div class='alert-danger alert' *ngIf="password.invalid && password.touched"> Please Enter a Password! </div>
+	<div class='alert-danger alert' *ngIf="verifyPassword.invalid && verifyPassword.touched"> Please Verify your Password </div>
+	<div class='alert-danger alert' *ngIf="usernameError"> Username already taken </div>
+<form (ngSubmit)='register()' #f = "ngForm">
 	<div class="form-group">
-	<input type="text" name="username" placeholder="username" class="form-control">
+	<input type="text" ngModel #username ="ngModel" name="username" placeholder="username" class="form-control" required>
+	</div>
+	
+	<div class="form-group">
+		<input type="password" ngModel #password ="ngModel" name="password" placeholder="password" class="form-control" required>
+	</div>
+		
+	<div class="form-group">
+		<input type="password" ngModel #verifyPassword ="ngModel" name="verifyPassword" placeholder="verify password" class="form-control" required>
 	</div>
 
-	<div class="form-group">
-		<input type="password" name="password" placeholder="password" class="form-control">
+	<div *ngIf="passwordError" class="alert-danger alert">Passwords do not match
 	</div>
-
-	<div class="form-group">
-		<input type="password" name="verify" placeholder="verify password" class="form-control">
-	</div>
-		<a class="btn btn-primary btn-block" routerLink="/user/:uid">Register</a>
-		<a  class="btn btn-danger btn-block" routerLink="/login">Cancel</a>
+		<button class="btn btn-primary btn-block" type='submit'[disabled]='f.invalid'>Register</button>
+		<button  class="btn btn-danger btn-block" type="submit">Cancel</button>
 </form>
 </div>

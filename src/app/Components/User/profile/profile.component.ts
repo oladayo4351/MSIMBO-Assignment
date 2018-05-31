@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserService} from '../../../services/user.service.client';
+import { User } from '../../../models/user.model.client';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +11,58 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+uid:string;
+user: User;
+username: string;
+email: string;
+firstName: string;
+lastName: string;
+oldUsername: string; 
+usernameTaken: boolean;
+submitSuccess: boolean;
+
+
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute) {} 
+
+@ViewChild('f') profileForm : NgForm; 
 
   ngOnInit() {
-  }
+this.activatedRoute.params.subscribe(
+	params =>{
+		this.uid =params['uid'];
+		this.user = this.userService.findUserById(this.uid);
+		this.username = this.user.username
+		this.email = this.user.email;
+		this.firstName = this.user.firstName;
+		this.lastName = this.user.lastName;
+		this.oldUsername = this.user.username;
+	})
+  
+}
+ update(){
+ 	this.username = this.profileForm.value.username
+ 	this.email = this.profileForm.value.email
+	this.lastName = this.profileForm.value.firstName
+	this.firstName = this.profileForm.value.lastName
+	
+	const aUser: User = this.userService.findUserByUsername(this.username);
+ 	if(aUser && this.oldUsername !== this.username){
+ 		this.usernameTaken = true;
+ 		this.submitSuccess = false;
+	}else {
+		const updateUser : User ={
+ 			_id : this.user._id,
+ 			username: this.username,
+ 			password: this.user.password,
+			firstName:this.firstName,
+			lastName: this.lastName,
+			email: this.email 
+		}
+		
+		this.usernameTaken = false;
+		this.submitSuccess = true;
+		this.userService.updateUser(this.uid,updateUser);
 
+ 	}
+ }
 }
