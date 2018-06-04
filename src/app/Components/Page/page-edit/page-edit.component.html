@@ -8,25 +8,23 @@
 		</div>	
 	</nav>
 <div class="container-fluid">
-<form (ngSubmit)='update()' id='pageform' #f ='ngForm' >
-	<div *ngIf="name.invalid && name.touched" class='alert alert-danger'>
-		Please enter a Name!
-		</div>
+	<form (ngSubmit)='update()' id='pageform' #f ='ngForm' >
+		<div *ngIf="name.invalid && name.touched" class='alert alert-danger'>
+			Please enter a Name!
+			</div>
 
-	<div>
-		<div class="form-group">
-			<label for="name">Name</label>
-			<input type="text" name="name" ngModel='{{page.name}}' #name='ngModel' required placeholder="Please enter your name" class="form-control">
+		<div>
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" name="name" ngModel='{{page.name}}' #name='ngModel' required placeholder="Please enter your name" class="form-control">
+			</div>
 		</div>
-	</div>
-
-			<label for="dsecription">Description</label>
-			<input type="text" name="description" placeholder="Please enter your description" class="form-control" ngModel='{{page.description}}' #description='ngModel' >
-			
-			<button type='button' (click)='delete()' class="do-margin btn btn-danger"  >Delete</button>
-			<button [disabled] = 'f.invalid' type='submit' class=" do-margin btn btn-success float-right" >Submit</button>
-		
-</form>
+				<label for="dsecription">Description</label>
+				<input type="text" name="description" placeholder="Please enter your description" class="form-control" ngModel='{{page.description}}' #description='ngModel' >
+				
+				<button type='button' (click)='delete()' class="do-margin btn btn-danger"  >Delete</button>
+				<button [disabled] = 'f.invalid' type='submit' class=" do-margin btn btn-success float-right" >Submit</button>
+	</form>
 </div>
 
 <nav class="navbar navbar-dark do-gray fixed-bottom">
