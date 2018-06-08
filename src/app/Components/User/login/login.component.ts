@@ -32,14 +32,19 @@ errorMsg = 'Invaild username or password!';
  	this.username = this.loginForm.value.username;
  	this.password = this.loginForm.value.password;
 	
-
-	const user: User = this.userService.findUserByCredentials(this.username,this.password);
-	if (user){
-		//navigate to profile
+ this.userService.findUserByCredentials(this.username,this.password).subscribe(
+	(user: User)=>{
 		this.router.navigate(['/user/'+user._id])
-	}else {
-		this.errorFlag = true
+		this.errorFlag = false;
+
+},
+
+	(error: any) =>{
+		this.errorFlag = true;
+
 	}
-} 
+	)
+
+	}
 
 }

@@ -19,6 +19,8 @@ usernameError: boolean;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+  	 this.passwordError = false;
+      this.usernameError = false;
   }
 
 register(){
@@ -31,27 +33,48 @@ if(this.password !== this.verifyPassword){
 	this.usernameError = false;
 } else{
 	this.passwordError = false;
-	const user: User = this.userService.findUserByUsername(this.username);
-	if(user){
-		this.usernameError = true
-		this.passwordError= false;
-	}else {
-	
+	 this.userService.findUserByUsername(this.username).subscribe(
+		(user: User) =>{
+		this.usernameError = true;
+
+	 	},
+	 	(error: any) =>{
 		this.passwordError= false;
 		this.usernameError = false;
 		const newUser: User ={
-			_id : "",
+			_id : '',
 			username : this.username,
 			password : this.password,
 			firstName : '',
 			lastName : '',
 			email : ''};
-this.userService.createUser(newUser);
-var id = this.userService.findUserByUsername(this.username)._id;
-this.router.navigate(['/user/', id])
-		}
-	}
-	
-}
 
+	 
+this.userService.createUser(newUser).subscribe(
+	(user: User) =>{
+		var id = user._id
+		this.router.navigate(['/user/', id])
+			}) 
+	 	
+})
 }
+}
+}
+	// if(user){
+	// 	this.usernameError = true
+	// 	this.passwordError= false;
+	// }else {
+	
+	// 	this.passwordError= false;
+	// 	this.usernameError = false;
+	// 	const newUser: User ={
+	// 		_id : "",
+	// 		username : this.username,
+	// 		password : this.password,
+	// 		firstName : '',
+	// 		lastName : '',
+	// 		email : ''}
+
+
+
+

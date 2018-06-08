@@ -12,14 +12,23 @@ import { NgForm } from '@angular/forms';
 export class ProfileComponent implements OnInit {
 
 uid:string;
-user: User;
-username: string;
-email: string;
-firstName: string;
-lastName: string;
+username: string='1';
+email: string = '1';
+firstName: string= '1';
+lastName: string = '1';
 oldUsername: string; 
 usernameTaken: boolean;
 submitSuccess: boolean;
+user: User ={
+	_id: '',
+	username:'',
+	password:'',
+	firstName:'',
+	lastName:'',
+	email: ''
+};
+
+aUser:User
 
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute) {} 
@@ -27,15 +36,21 @@ submitSuccess: boolean;
 @ViewChild('f') profileForm : NgForm; 
 
   ngOnInit() {
+
 this.activatedRoute.params.subscribe(
 	params =>{
 		this.uid =params['uid'];
-		this.user = this.userService.findUserById(this.uid);
-		this.username = this.user.username
-		this.email = this.user.email;
-		this.firstName = this.user.firstName;
-		this.lastName = this.user.lastName;
-		this.oldUsername = this.user.username;
+	this.userService.findUserById(this.uid).subscribe(
+			(user:User) => {
+		this.user = user; 
+		this.username = user.username;
+		this.email = user.email;
+		this.firstName = user.firstName;
+		this.lastName = user.lastName;
+		this.oldUsername = user.username;
+
+			});
+		
 	})
   
 }
@@ -44,25 +59,54 @@ this.activatedRoute.params.subscribe(
  	this.email = this.profileForm.value.email
 	this.lastName = this.profileForm.value.firstName
 	this.firstName = this.profileForm.value.lastName
+
 	
-	const aUser: User = this.userService.findUserByUsername(this.username);
- 	if(aUser && this.oldUsername !== this.username){
- 		this.usernameTaken = true;
- 		this.submitSuccess = false;
-	}else {
-		const updateUser : User ={
+	 this.userService.findUserByUsername(this.username).subscribe(
+	 	(user: User)=> {
+	 	this.aUser = user
+	 	}, 
+
+	 	);
+
+	 if(this.aUser && this.oldUsername !==this.username){
+	 	 this.usernameTaken = true;
+        this.submitSuccess = false;
+    }else{
+	 		const updateUser : User ={
  			_id : this.user._id,
  			username: this.username,
  			password: this.user.password,
 			firstName:this.firstName,
 			lastName: this.lastName,
 			email: this.email 
-		}
-		
+
+
+
+	 	};
+	 
+		this.userService.updateUser(this.uid,updateUser).subscribe(
+			(user2: User)=>{
 		this.usernameTaken = false;
 		this.submitSuccess = true;
-		this.userService.updateUser(this.uid,updateUser);
+			});
+	 }
+	 
+ 	
+ 		
+	// }else {
+	// 	const updateUser : User ={
+ // 			_id : this.user._id,
+ // 			username: this.username,
+ // 			password: this.user.password,
+	// 		firstName:this.firstName,
+	// 		lastName: this.lastName,
+	// 		email: this.email 
+	// 	}
+		
+	// 	this.usernameTaken = false;
+	// 	this.submitSuccess = true;
+	// 	this.userService.updateUser(this.uid,updateUser);
 
- 	}
+ // 	}
  }
 }

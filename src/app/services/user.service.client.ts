@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model.client';
+import {map } from 'rxjs/operators'
+import {Http, Response} from '@angular/http';
+import { environment } from '../../environments/environment'
 
 // injecting service into module
 @Injectable()
 
 export class UserService {
 
-  constructor() { }
+  baseUrl = environment.baseUrl;
+
+  constructor(private http: Http) { }
 
 users: User[] = [
 	{_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "alice@gmail.com"},
@@ -16,45 +21,63 @@ users: User[] = [
 	];
 
   createUser(user: User) {
-    user._id = Math.floor(Math.random()*Math.floor(10000)).toString();
-    this.users.push(user);
-    return user;
+    const url = this.baseUrl + '/api/user'
+    return this.http.post(url, user).pipe(map(
+      (response: Response) => {
+        return response.json();
+      }
+
+      ))
   }
 
   findUserById(userId: string) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {  
-      	return this.users[x]; }
-    }
+    const url = this.baseUrl + '/api/user/' + userId
+    return this.http.get(url).pipe(map(
+      (response: Response) => {
+      return response.json() }
+       ))
+
   }
 
   findUserByUsername(username: string) {  
-  	for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x].username === username) { 
-       return this.users[x]; }
-    }
+  	const url = this.baseUrl + '/api/user?username='+username
+    return this.http.get(url).pipe(map(
+      (response: Response) => {
+      return response.json() }
+       ))
+
   } 
   findUserByCredentials(username: string, password: string) { 
-  	for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x].username === username && this.users[x].password === password) { 
-      	return this.users[x]; }
-    }
-   }
-  updateUser(userId:string, user:User) { 
-  	const oldUser = this.findUserById(userId);
-  	const index = this.users.indexOf(oldUser);
+      const url = this.baseUrl +'/api/user?username='+ username + '&password=' + password
+      return this.http.get(url).pipe(map(
+        (response: Response) =>{
+          return response.json()
+        }
+        ))
+      }
+  
 
-    this.users[index].username = user.username;
-    this.users[index].password = user.password;
-    this.users[index].firstName = user.firstName;
-    this.users[index].lastName = user.lastName;
-    this.users[index].email = user.email;
 
-		}
-
-  deleteUser(userId:string) { 
-  	const oldUser = this.findUserById(userId);
-  	const index = this.users.indexOf(oldUser);
-  	this.users.splice(index,1);
-  	  }
+  updateUser(userId: string, user: User) { 
+    const url = this.baseUrl + '/api/user/' + userId;
+    return this.http.put(url, user).pipe(map(
+       (response: Response) => {
+         return response.json();
+       }
+    ))
 }
+
+   deleteUser(userId: string) { 
+ 
+    const url = this.baseUrl + '/api/user/' + userId;
+    return this.http.delete(url).pipe(map(
+       (response: Response) => {
+         return response.json();
+       }
+    ))
+  }
+
+
+
+  }
+
