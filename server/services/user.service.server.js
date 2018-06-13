@@ -17,20 +17,18 @@ app.delete('/api/user/:uid', deleteUser);
 	function selectUserbyId(uid){
 		for (let x = 0; x < users.length; x++) {
       		if (users[x]._id === uid) {  
-        		return users[x]; 
+            return users[x]; 
         	}
       	}
 	}
 
  function findUserById(req, res) {
     let uid = req.params['uid']
-    for (let x = 0; x < users.length; x++) {
-      if (users[x]._id === uid) {  
-      	res.json( users[x]) 
-      	return;
-      }
+   let  user = selectUserbyId(uid)
+        res.json(user) 
+      
     }
-  }
+  
 
   function createUser(req,res){
 	var user = req.body;
@@ -40,27 +38,30 @@ app.delete('/api/user/:uid', deleteUser);
 }
 
 function findUser (req, res){
-	const username = req.query['username']
-  	const password = req.query['password']
-    
+	const username = req.query['username'];
+  const password = req.query['password']
 	if (username && password){
-	var user;
+
 		for (let x = 0; x < users.length; x++) {
 		  if (users[x].username === username && users[x].password === password){ 
-		     user = users[x];
+		    var user = users[x];
+           res.json(user) 
+           return;
+      
 		  }
 		}
-    res.json(user)
-    return;
-		}
+  		}
 
 
   if(username) {
-      var user = users.find(function(user){
-        return user.username === username;
-      })
-      res.json(user);
+        var user = users.find(function(use){
+          return use.username === username;   
+       })
+         
+       res.json(user);
       return;
+      
+     
     }
     // res.json(users);
   res.json(users)

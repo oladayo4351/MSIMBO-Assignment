@@ -27,7 +27,7 @@
 			<label for="width">Width</label>
 			<input ngModel='{{widget.width}}' #width='ngModel' required type="text" name="width" class="form-control" placeholder="100%">
 		</div>
-		<button type='submit' [disabled]='f.invalid' class="btn btn-block btn-primary" routerLink='/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget'>Upload</button>
+		<button type="submit" [disabled]='f.invalid' class="btn btn-block btn-primary" >Submit</button>
 		<button type='button' class="btn btn-block btn-danger"(click)='delete()'>Delete</button>
 </form>
 

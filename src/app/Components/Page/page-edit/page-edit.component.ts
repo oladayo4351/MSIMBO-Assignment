@@ -12,9 +12,15 @@ export class PageEditComponent implements OnInit {
 uid:string;
 wid:string;
 pid: string;
-page: Page;
+ page: Page = {
+    _id: "",
+    websiteId: "",
+    name: "",
+    description: ""
+  };
 name: string;
 description: string;
+pages: Page[];
 
 
   @ViewChild('f') pageForm: NgForm;  
@@ -25,15 +31,21 @@ this.activatedRoute.params.subscribe(params =>{
 	this.uid = params['uid'];
 	this.wid = params['wid'];
 	this.pid = params['pid'];
-	this.page = this.pageService.findPageById(this.pid);
+	this.pageService.findPageById(this.pid).subscribe(
+		(page: Page)=>{
+			this.page = page
+		});
 	
 
 })
   }
 
 delete(){
-	this.pageService.deletePage(this.pid)
+	this.pageService.deletePage(this.pid).subscribe(
+		(pages: Page[])=>{
 	this.router.navigate(['/user',this.uid,'website',this.wid,'page'])
+		} )
+	
 }
 update(){
 	this.name = this.pageForm.value.name
@@ -45,7 +57,11 @@ const newPage: Page ={
 	description: this.description
 
 } 
-this.pageService.updatePage(this.pid, newPage)
-	this.router.navigate(['/user',this.uid,'website',this.wid,'page'])
+this.pageService.updatePage(this.pid, newPage).subscribe(
+	(page: Page)=>{
+		this.router.navigate(['/user',this.uid,'website',this.wid,'page'])
+
+	})
+	
 }
 }

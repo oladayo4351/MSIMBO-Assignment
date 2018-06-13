@@ -11,14 +11,21 @@ export class WidgetEditComponent implements OnInit {
 wgid: string;
 widgets: Widget[];
 pid: string;
-widget: Widget;
+  widget: Widget= {
+      _id: '',
+    widgetType: '',
+    pageId: ''
+  };
   constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private router: Router ) { }
 
   ngOnInit() {
   	this.activatedRoute.params.subscribe(params => {
   		this.wgid = params['wgid'];
       this.pid = params['pid'];
-  		this.widget = this.widgetService.findWidgetById(this.wgid);  		
+  		 this.widgetService.findWidgetById(this.wgid).subscribe(
+         (widget:Widget)=> {
+           this.widget = widget
+         });  		
   	})
 
   

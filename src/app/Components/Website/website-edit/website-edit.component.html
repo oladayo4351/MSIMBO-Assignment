@@ -35,11 +35,11 @@
 				<!-- Website Name -->
 				<div class="form-group ">
 					<label for="name"><b>Website Name</b></label>
-						<input class="border form-control btn-block" type="text" name="name" placeholder="Type your Website name here" required ngModel='{{website.name}}' #name = 'ngModel'>
+						<input class="border form-control btn-block" type="text" name="name" placeholder="Type your Website name here" required ngModel='{{website.name}}' #name ='ngModel'>
 				</div>
 			
 					<label for="decription"><b>Website Description</b></label>
-					<textarea name='description' class="border form-control btn-block" rows="3" placeholder="Input your description here"  ngModel='{{website.description}}' required #description='ngModel' ></textarea>
+					<textarea name='description' class="border form-control btn-block" rows="3" placeholder="Input your description here"  ngModel='{{website.description}}' #description='ngModel' ></textarea>
 					
 				
 					<a (click)="delete()" class=" do-margin btn btn-danger" routerLink='/user/{{uid}}/website'>Delete</a>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model.client';
-import {map } from 'rxjs/operators'
+import { map } from 'rxjs/operators'
 import {Http, Response} from '@angular/http';
 import { environment } from '../../environments/environment'
 
@@ -21,7 +21,7 @@ users: User[] = [
 	];
 
   createUser(user: User) {
-    const url = this.baseUrl + '/api/user'
+    const url = this.baseUrl + '/api/user';
     return this.http.post(url, user).pipe(map(
       (response: Response) => {
         return response.json();
@@ -31,7 +31,7 @@ users: User[] = [
   }
 
   findUserById(userId: string) {
-    const url = this.baseUrl + '/api/user/' + userId
+    const url = this.baseUrl + '/api/user/' + userId;
     return this.http.get(url).pipe(map(
       (response: Response) => {
       return response.json() }
@@ -39,8 +39,8 @@ users: User[] = [
 
   }
 
-  findUserByUsername(username: string) {  
-  	const url = this.baseUrl + '/api/user?username='+username
+  findUserByUsername(username: string) {
+  	const url = this.baseUrl + '/api/user?username='+username;
     return this.http.get(url).pipe(map(
       (response: Response) => {
       return response.json() }
@@ -63,6 +63,7 @@ users: User[] = [
     return this.http.put(url, user).pipe(map(
        (response: Response) => {
          return response.json();
+
        }
     ))
 }

@@ -36,20 +36,20 @@ aUser:User
 @ViewChild('f') profileForm : NgForm; 
 
   ngOnInit() {
-
 this.activatedRoute.params.subscribe(
 	params =>{
 		this.uid =params['uid'];
 	this.userService.findUserById(this.uid).subscribe(
 			(user:User) => {
 		this.user = user; 
-		this.username = user.username;
-		this.email = user.email;
-		this.firstName = user.firstName;
-		this.lastName = user.lastName;
-		this.oldUsername = user.username;
+		this.username = this.user.username;
+		this.email = this.user.email;
+		this.firstName = this.user.firstName;
+		this.lastName = this.user.lastName;
+		this.oldUsername = this.user.username;
+		
 
-			});
+			})
 		
 	})
   
@@ -57,16 +57,17 @@ this.activatedRoute.params.subscribe(
  update(){
  	this.username = this.profileForm.value.username
  	this.email = this.profileForm.value.email
-	this.lastName = this.profileForm.value.firstName
-	this.firstName = this.profileForm.value.lastName
+ 	this.firstName = this.profileForm.value.firstName
+	this.lastName = this.profileForm.value.lastName
+	
 
 	
 	 this.userService.findUserByUsername(this.username).subscribe(
 	 	(user: User)=> {
 	 	this.aUser = user
 	 	}, 
-
-	 	);
+);
+	 	
 
 	 if(this.aUser && this.oldUsername !==this.username){
 	 	 this.usernameTaken = true;
@@ -79,8 +80,6 @@ this.activatedRoute.params.subscribe(
 			firstName:this.firstName,
 			lastName: this.lastName,
 			email: this.email 
-
-
 
 	 	};
 	 

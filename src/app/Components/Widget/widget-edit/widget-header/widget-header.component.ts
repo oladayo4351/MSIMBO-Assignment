@@ -23,8 +23,11 @@ text?: string;
 width?: string;
 url?: string;
 name?: string;
-
- widget: Widget;
+ widget: Widget ={
+ 	_id:'',
+ 	widgetType:'',
+ 	pageId:''
+ };
  
  @ViewChild('f') widgetForm: NgForm
 
@@ -37,7 +40,10 @@ name?: string;
   		this.wid = params['wid']
   		this.pid = params['pid']
   		this.wgid = params['wgid'] 
-  		this.widget =  this.widgetService.findWidgetById(this.wgid)
+  		 this.widgetService.findWidgetById(this.wgid).subscribe(
+  		 	(widget: Widget)=>{
+  		 		this.widget =widget
+  		 	})
   	})
   }
 
@@ -55,13 +61,17 @@ update(){
 		name: this.name
 	}
 
-this.widgetService.updateWidget(this.wgid, updateWidget);
+this.widgetService.updateWidget(this.wgid, updateWidget).subscribe(
+	(widget:Widget)=>{
 this.router.navigate(['/user', this.uid,'website',this.wid,'page',this.pid,'widget'])
+})
 }
 
-delete(){
-	this.widgetService.deleteWidget(this.wgid)
-	this.router.navigate(['/user', this.uid,'website',this.wid,'page',this.pid,'widget'])
 
+delete(){
+	this.widgetService.deleteWidget(this.wgid).subscribe(
+		(widgets:Widget[])=>{
+	this.router.navigate(['/user', this.uid,'website',this.wid,'page',this.pid,'widget'])
+})
 }
 }

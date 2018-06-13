@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Widget } from '../models/widget.model.client'
+import { map } from 'rxjs/operators'
+import {Http, Response} from '@angular/http';
+import { environment } from '../../environments/environment'
 // injecting service into module
 @Injectable()
 
 export class WidgetService {
 
-  constructor() { }
+baseUrl = environment.baseUrl;
+
+  constructor(private http: Http) { }
 
 widgets: Widget[] = 
 [
@@ -21,41 +26,56 @@ widgets: Widget[] =
 
 
   createWidget(pageId:string, widget:Widget) {
-    widget._id = Math.floor(Math.random()*Math.floor(10000)).toString(); 
-    widget.pageId = pageId;
-    this.widgets.push(widget);
-    return widget;
+      const url = this.baseUrl + '/api/page/' + pageId +'/widget';
+    return this.http.post(url, widget).pipe(map(
+      (response: Response) => {
+        return response.json();
+      }
+
+      ))
+  
   }
 
   findWidgetByPageId(pageId: string) {
-   var result = [];
-    for (var x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x].pageId === pageId) { 
-        result.push(this.widgets[x]);
-         }
-    }return result
+    const url = this.baseUrl + '/api/page/' + pageId +'/widget';
+    return this.http.get(url).pipe(map(
+      (response: Response) => {
+        return response.json();
+      }
+
+      ))
+  
   }
 
   findWidgetById(widgetId: string) {
-    for (var x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId) {  return this.widgets[x]; }
-    }
+
+   const url = this.baseUrl + '/api/widget/' + widgetId;
+    return this.http.get(url).pipe(map(
+      (response: Response) => {
+        return response.json();
+      }
+
+      ))
   }
 
   updateWidget(widgetId:string, widget:Widget) { 
-    const oldWidget = this.findWidgetById(widgetId);
-    const index = this.widgets.indexOf(oldWidget);
+   const url = this.baseUrl + '/api/widget/' + widgetId;
+    return this.http.put(url,widget).pipe(map(
+      (response: Response) => {
+        return response.json();
+      }
 
-    this.widgets[index].size = widget.size;
-    this.widgets[index].width = widget.width;
-    this.widgets[index].text = widget.text;
-    this.widgets[index].url = widget.url;
-
+      ))
 
    }
   deleteWidget(widgetId:string) {  
-    const oldWidget = this.findWidgetById(widgetId);
-    const index = this.widgets.indexOf(oldWidget);
-      this.widgets.splice(index,1);
-     }
+   const url = this.baseUrl + '/api/widget/' + widgetId;
+    return this.http.delete(url).pipe(map(
+      (response: Response) => {
+        return response.json();
+      }
+
+      ))
+}
+
 }

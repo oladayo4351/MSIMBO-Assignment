@@ -32,10 +32,14 @@ create(type){
   }
 
 
-  this.widgetService.createWidget(this.pid, newWidget);
-  const wgid = this.widgetService.widgets[this.widgetService.widgets.length-1]._id
+  this.widgetService.createWidget(this.pid, newWidget).subscribe(
+    (widget:Widget)=>{
+    
+             this.router.navigate(['user', this.uid, 'website', this.wid,'page',this.pid,'widget',widget._id])
+    });
+ // const wgid = this.widgetService.widgets[this.widgetService.widgets.length-1]._id
   
 
-  this.router.navigate(['user', this.uid, 'website', this.wid,'page',this.pid,'widget',wgid])
+ 
 }
 }
