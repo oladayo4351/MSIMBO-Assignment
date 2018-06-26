@@ -27,6 +27,10 @@ import { UserService } from './services/user.service.client';
 import { WebsiteService } from './services/website.service.client';
 import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
+import { FlickrService } from './services/flickr.service.client'
+import { OmdbComponent } from './Components/omdb/omdb.component';
+
+import { FlickrImageSearchComponent } from './Components/Widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,9 @@ import { WidgetService } from './services/widget.service.client';
     WidgetListComponent,
     WidgetHeaderComponent,
     WidgetImageComponent,
-    WidgetYoutubeComponent
+    WidgetYoutubeComponent,
+    OmdbComponent,
+    FlickrImageSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +59,7 @@ import { WidgetService } from './services/widget.service.client';
     FormsModule,
     HttpModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

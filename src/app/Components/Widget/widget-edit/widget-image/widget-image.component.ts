@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { WidgetService } from '../../../../services/widget.service.client'
 import { Widget } from '../../../../models/widget.model.client'
 import { NgForm } from '@angular/forms'
-
+import { environment } from '../../../../../environments/environment'
 
 @Component({
   selector: 'app-widget-image',
@@ -24,6 +24,8 @@ width?: string;
 url?: string;
 name?: string;
 
+baseUrl: string;
+
  widget: Widget ={
  	_id:'',
  	widgetType:'',
@@ -41,6 +43,7 @@ name?: string;
   		this.wid = params['wid']
   		this.pid = params['pid']
   		this.wgid = params['wgid'] 
+  		this.baseUrl = environment.baseUrl;
   		this.widgetService.findWidgetById(this.wgid).subscribe(
   			(widget:Widget)=>{
   				this.widget = widget

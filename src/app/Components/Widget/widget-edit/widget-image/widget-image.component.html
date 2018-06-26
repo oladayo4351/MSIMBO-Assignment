@@ -30,11 +30,24 @@
 			<label for="width">Width</label>
 			<input ngModel='{{widget.width}}' #width='ngModel' required type="text" name="width" class="form-control" placeholder="100%">
 		</div>
-		<div class="form-group">
+		<!-- <div class="form-group">
 			<label for="upload">Upload</label>
 			<input class="form-control" type="file" name="upload">
-		</div>
-		<a class="btn btn-block btn-secondary" routerLink='/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget'>Upload</a>
+		</div> -->
+
+		<form ngNoForm action="{{baseUrl}}/api/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wgid}}/upload" method="post" enctype="multipart/form-data">
+
+            <div>
+                <label class='form-group'>Upload</label>
+                    <input  name="myFile"   type="file" class="form-control"/>
+                        <br>
+
+		<button type='submit' class="btn btn-block btn-secondary" >Upload</button>
+			</div>
+	
+        </form>
+        <br>
+<button class="btn btn-primary btn-block" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wgid}}/flickr">Photos from Flickr</button>
 		<button [disabled]='f.invalid'  class="btn btn-block btn-primary">Submit</button>
 		<button type='button' class="btn btn-block btn-danger" (click)='delete()' >Delete</button>
 		
