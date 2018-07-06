@@ -1,5 +1,8 @@
 module.exports = function(app){
-	websites = 
+	
+  const websiteModel = require('../models/website/website.model.server.js')
+
+  websites = 
 [
   { _id: "123", name: "Facebook", developerId: "456", description: "Lorem" },
   { _id: "234", name: "Tweeter",  developerId: "456", description: "Lorem" },
@@ -16,66 +19,68 @@ app.get('/api/website/:wid',findWebsiteById);
 app.put('/api/website/:wid',updateWebsite);
 app.delete('/api/website/:wid',deleteWebsite);
 
-function selectWebsiteById(wid){
-	for (var x = 0; x < websites.length; x++) {
-      if (websites[x]._id === wid) {  
-        return websites[x];
-      }
-  }
-}
 
 function createWebsite(req,res){
-	userId = req.params['uid'];
-	website = req.body;
-	website._id = Math.floor(Math.random()*Math.floor(10000)).toString();  
-    website.developerId = userId;
-    websites.push(website);
-    res.json(website);
-}
+	// userId = req.params['uid'];
+	var website = req.body;
+	// website._id = Math.floor(Math.random()*Math.floor(10000)).toString();  
+ //    website.developerId = userId;
+ //    websites.push(website);
+
+ websiteModel.createWebsite(website).then(
+  data =>{
+    res.json(data);
+
+  })
+    }
 
 
 function findAllWebsitesForUser(req,res){
-	  var userId = req.params['uid']
-	  var result = [];
-    for (var x = 0; x < websites.length; x++) {
-      if (websites[x].developerId === userId) {  
-        result.push(websites[x])
+	  var uid = req.params['uid']
+	  // var result = [];
+    // for (var x = 0; x < websites.length; x++) {
+    //   if (websites[x].developerId === userId) {  
+    //     result.push(websites[x])
 
-        }
-    }res.json(result)
+    //     }
+    // }
+
+    websiteModel.findAllWebsitesForUser(uid).then(
+      websites =>{
+         res.json(websites)
+      })
+   
     
 }
 
 function findWebsiteById(req,res){
-	 websiteId = req.params['wid']
-	 for (var x = 0; x < websites.length; x++) {
-      if (websites[x]._id === websiteId) {  
-        let website = websites[x];
-        res.json(website)
-       
+	 var wid = req.params['wid']
+	 websiteModel.findWebsiteById(wid).then(
+    website => {
+      res.json(website)
+      
+    })
+          
     	}
-    }
-}
 
 function updateWebsite(req, res){
-var websiteId = req.params['wid']
+var wid = req.params['wid']
 var  website = req.body;
-const oldWebsite =  selectWebsiteById(websiteId);
-    const index = websites.indexOf(oldWebsite);
-    websites[index].name = website.name;
-    websites[index].description = website.description;
-    res.json(website)
-
+websiteModel.updateWebsite(wid,website).then(
+data =>{
+res.json(data)
+})
 }
+
 
 function deleteWebsite(req, res){
-var websiteId = req.params['wid']
-	const oldWebsite = selectWebsiteById(websiteId);
-    const index = websites.indexOf(oldWebsite);
-    websites.splice(index,1);
-    res.json(websites)
+var wid = req.params['wid']
+	websiteModel.deleteWebsite(wid).then(
+    data =>{
+      res.json(data)
+    })
+    
+}
+ 
 
 }
- }
-
-

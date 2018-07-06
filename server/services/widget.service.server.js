@@ -2,7 +2,7 @@ module.exports = function(app){
 
 var multer = require('multer'); // npm install multer --save
 var upload = multer({ dest: './dist/assets/uploads'})
-
+var widgetModel = require('../models/widget/widget.model.server.js')
 widgets = 
 [
   { _id: "123",  widgetType: "HEADING", pageId: "321", size: 2, text: "GIZMODO"},
@@ -27,68 +27,77 @@ function uploadImage(req,  res){
   const pid = req.params['pid'];
   const wgid = req.params['wgid'];
   const myFile = req.file;
-  widget = selectWidgetById(wgid);
-  widget.url ='/asset/upload/' + myFile.filename;
-  var callbackUrl = req.headers.origin + '/user/' +uid + '/website/' + wid +'/page/'+pid+'/widget/'+wgid;
+  widget = findWidgetById(wgid).then(
+    widget =>{
+       widget.url ='/asset/upload/' + myFile.filename;
+       widgetModel.updateWidget( wgid, widget).then(
+        data=>{
+           var callbackUrl = req.headers.origin + '/user/' +uid + '/website/' + wid +'/page/'+pid+'/widget/'+wgid;
   res.redirect(callbackUrl);
+        })
+    }
+
+    );
+ 
+
+ 
 }
 
-function selectWidgetById(wgid){
-  for (var x = 0; x < widgets.length; x++) {
-      if (widgets[x]._id === wgid) {  
-        return widgets[x];
-      }
-  }
-}
+// function selectWidgetById(wgid){
+//   for (var x = 0; x < widgets.length; x++) {
+//       if (widgets[x]._id === wgid) {  
+//         return widgets[x];
+//       }
+//   }
+// }
 
   function createWidget(req, res) {
-  let pageId =req.params['pid']
+  let pid =req.params['pid']
   let widget = req.body;
-    widget._id = Math.floor(Math.random()*Math.floor(10000)).toString(); 
-    widget.pageId = pageId;
-    widgets.push(widget);
-    res.json(widget);
+    // widget._id = Math.floor(Math.random()*Math.floor(10000)).toString(); 
+    // widget.pageId = pageId;
+    // widgets.push(widget);
+widgetModel.createWidget(widget).then(
+  data => {
+     res.json(data);
+  })
+
+   
   }
 
   function findAllWidgetsForUser(req,res) {
-  pageId = req.params['pid']
-   var result = [];
-    for (var x = 0; x < widgets.length; x++) {
-      if (widgets[x].pageId === pageId) { 
-        result.push(widgets[x]);
-         }
-    }res.json(result)
+ let pid = req.params['pid']
+  widgetModel.findAllWidgetsforPage(pid).then(
+    data =>{
+        res.json(data)
+    })
+
   }
 
   function findWidgetById(req, res) {
-    let widgetId = req.params['wgid']
-    for (var x = 0; x < widgets.length; x++) {
-      if (widgets[x]._id === widgetId){
-        let widget =widgets[x] 
-        res.json(widget)
-      }
-    }
+    let wgid = req.params['wgid']
+    widgetModel.findWidgetById(wgid).then(
+      data =>{
+        res.json(data)
+      })
   }
 
   function updateWidget(req, res) { 
-    let widgetId = req.params['wgid'];
+    let wgid = req.params['wgid'];
     let widget = req.body;
-    const oldWidget = selectWidgetById(widgetId);
-    const index = widgets.indexOf(oldWidget);
-
-    widgets[index].size = widget.size;
-    widgets[index].width = widget.width;
-    widgets[index].text = widget.text;
-    widgets[index].url = widget.url;
-    res.json(widget);
-
+   
+   widgetModel.updateWidget(wgid,widget).then(
+    data =>{
+         res.json(data);
+    })
 
    }
+
   function deleteWidget(req,res) {  
-   let widgetId = req.params['wgid']
-    const oldWidget = selectWidgetById(widgetId);
-    const index = widgets.indexOf(oldWidget);
-      widgets.splice(index,1);
-      res.json(widgets)
+   let wgid = req.params['wgid']
+  widgetModel.deleteWidget(wgid).then(
+    data =>{
+      res.json(data)
+    })     
      }
    }

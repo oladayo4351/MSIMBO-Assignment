@@ -41,8 +41,7 @@ create(){
 	this.name = this.websiteForm.value.name;
 	this.description = this.websiteForm.value.description;
 	const newWebsite: Website ={
-		_id :'',
-		developerId:'',
+		developerId:this.uid,
 		name: this.name,
 		description: this.description
 	} 

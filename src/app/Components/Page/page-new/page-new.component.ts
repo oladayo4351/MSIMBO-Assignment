@@ -32,13 +32,13 @@ create(){
 	this.name = this.pageForm.value.name
 	this.description = this.pageForm.value.description
 	const newPage: Page ={
-		_id: '',
 		name: this.name,
-		websiteId: '',
+		websiteId: this.wid,
 		description: this.description
 	}
 this.pageService.createPage(this.wid, newPage).subscribe(
   (page: Page)=>{
+   
     this.router.navigate(['user',this.uid,'website',this.wid, 'page'])
   })
 

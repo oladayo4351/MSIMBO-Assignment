@@ -34,17 +34,22 @@ errorMsg = 'Invaild username or password!';
 	
  this.userService.findUserByCredentials(this.username,this.password).subscribe(
 	(user: User)=>{
-		this.router.navigate(['/user/'+user._id])
+		if(user){
+			this.router.navigate(['/user/'+user._id])
 		this.errorFlag = false;
 
+		}else{
+			this.errorFlag = true;
+
+		}	
 },
 
 	(error: any) =>{
 		this.errorFlag = true;
 
-	}
+		}
 	)
 
-	}
+}
 
 }

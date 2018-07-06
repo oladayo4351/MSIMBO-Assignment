@@ -23,6 +23,7 @@ pages: Page[];
   		this.pageService.findPageByWebsiteId(this.wid).subscribe(
         (pages: Page[])=> {
           this.pages = pages
+          
         })
   		
   	}) 

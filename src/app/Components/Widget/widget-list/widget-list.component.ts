@@ -26,7 +26,7 @@ widgets: Widget[];
       this.widgetService.findWidgetByPageId(this.pid).subscribe(
         (widgets: Widget[])=> {
           this.widgets = widgets
-        }) 
+                  }) 
      
   })
 }

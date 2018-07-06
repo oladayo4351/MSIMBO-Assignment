@@ -13,7 +13,6 @@ uid:string;
 wid:string;
 pid: string;
  page: Page = {
-    _id: "",
     websiteId: "",
     name: "",
     description: ""
@@ -51,7 +50,6 @@ update(){
 	this.name = this.pageForm.value.name
 	this.description = this.pageForm.value.description
 const newPage: Page ={
-	_id: this.uid,
 	name: this.name,
 	websiteId: this.wid,
 	description: this.description

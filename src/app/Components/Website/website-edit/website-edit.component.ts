@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms'
 export class WebsiteEditComponent implements OnInit {
 uid: string;
 websites: Website[];
-website: Website={ _id: '',
+website: Website={
 name: '',
 developerId: '',
 description: '',}

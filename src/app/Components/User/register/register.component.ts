@@ -34,28 +34,30 @@ if(this.password !== this.verifyPassword){
 } else{
 	this.passwordError = false;
 	 this.userService.findUserByUsername(this.username).subscribe(
-		(user: User) =>{
-		this.usernameError = true;
-
-	 	},
-	 	(error: any) =>{
-		this.passwordError= false;
-		this.usernameError = false;
-		const newUser: User ={
-			_id : '',
+		(data: any) =>{
+		if(!data){
+			const newUser: User ={
 			username : this.username,
 			password : this.password,
 			firstName : '',
 			lastName : '',
 			email : ''};
 
-	 
-this.userService.createUser(newUser).subscribe(
+	this.userService.createUser(newUser).subscribe(
 	(user: User) =>{
 		var id = user._id
 		this.router.navigate(['/user/', id])
-			}) 
-	 	
+			}, 
+
+	 	(error: any) =>{
+		this.usernameError = true;
+			 
+
+});
+
+}else {
+	this.usernameError = true;
+}
 })
 }
 }

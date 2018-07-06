@@ -27,7 +27,6 @@ name?: string;
 baseUrl: string;
 
  widget: Widget ={
- 	_id:'',
  	widgetType:'',
  	pageId:''
  };
@@ -58,7 +57,7 @@ update(){
 	this.text = this.widgetForm.value.text
 	this.width = this.widgetForm.value.width
 	const updateWidget: Widget = {
-		_id: this.wgid,
+		 _id: this.wgid,
 		widgetType: this.widget.widgetType,
 		pageId: this.pid,
 		url: this.url,

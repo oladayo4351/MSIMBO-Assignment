@@ -78,4 +78,14 @@ widgets: Widget[] =
       ))
 }
 
+//   postWidget(widgetId:string, widget:Widget) {  
+//    const url = this.baseUrl + '/api/user/:uid/website/:wid/page/:pid/widget/'+widgetId+'/upload;
+//     return this.http.post(url,widget).pipe(map(
+//       (response: Response) => {
+//         return response.json();
+//       }
+
+//       ))
+// }
+
 }

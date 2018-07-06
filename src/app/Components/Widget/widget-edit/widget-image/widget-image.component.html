@@ -42,13 +42,13 @@
                     <input  name="myFile"   type="file" class="form-control"/>
                         <br>
 
-		<button type='submit' class="btn btn-block btn-secondary" >Upload</button>
+		<button type='button' class="btn btn-block btn-secondary" >Upload</button>
 			</div>
 	
         </form>
         <br>
 <button class="btn btn-primary btn-block" routerLink="/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{wgid}}/flickr">Photos from Flickr</button>
-		<button [disabled]='f.invalid'  class="btn btn-block btn-primary">Submit</button>
+		<button type='button' [disabled]='f.invalid'  class="btn btn-block btn-primary">Submit</button>
 		<button type='button' class="btn btn-block btn-danger" (click)='delete()' >Delete</button>
 		
 </form>
