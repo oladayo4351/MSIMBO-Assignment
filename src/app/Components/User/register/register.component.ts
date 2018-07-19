@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms'
 import { UserService } from '../../../services/user.service.client'
 import { User } from '../../../models/user.model.client'
 import { Router } from '@angular/router'
+import { SharedService} from '../../../services/shared.service.client'
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,7 +17,7 @@ password: string;
 verifyPassword: string;
 passwordError: boolean;
 usernameError: boolean;  
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private sharedService: SharedService) { }
 
   ngOnInit() {
   	 this.passwordError = false;
@@ -36,32 +37,31 @@ if(this.password !== this.verifyPassword){
 	 this.userService.findUserByUsername(this.username).subscribe(
 		(data: any) =>{
 		if(!data){
-			const newUser: User ={
-			username : this.username,
-			password : this.password,
-			firstName : '',
-			lastName : '',
-			email : ''};
+			this.userService.register(this.username, this.password).subscribe(
+				(data: User) => {
+			this.sharedService.user = data;
+			this.router.navigate(['/user']);
+		},
 
-	this.userService.createUser(newUser).subscribe(
-	(user: User) =>{
-		var id = user._id
-		this.router.navigate(['/user/', id])
-			}, 
 
-	 	(error: any) =>{
+		(error: any) =>{
 		this.usernameError = true;
-			 
+})
 
-});
 
-}else {
+} else {
 	this.usernameError = true;
 }
+
 })
+
 }
+
 }
+
 }
+
+
 	// if(user){
 	// 	this.usernameError = true
 	// 	this.passwordError= false;

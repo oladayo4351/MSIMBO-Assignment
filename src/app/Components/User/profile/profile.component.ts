@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService} from '../../../services/user.service.client';
 import { User } from '../../../models/user.model.client';
 import { NgForm } from '@angular/forms';
-
+import {SharedService} from '../../../services/shared.service.client'
+import {Router } from '@angular/router'
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -31,17 +32,14 @@ user: User ={
 aUser:User
 
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute) {} 
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private sharedService: SharedService, private router: Router) {} 
 
 @ViewChild('f') profileForm : NgForm; 
 
   ngOnInit() {
-this.activatedRoute.params.subscribe(
-	params =>{
-		this.uid =params['uid'];
-	this.userService.findUserById(this.uid).subscribe(
-			(user:User) => {
-		this.user = user; 
+
+		this.user = this.sharedService.user
+		this.uid = this.user._id;
 		this.username = this.user.username;
 		this.email = this.user.email;
 		this.firstName = this.user.firstName;
@@ -49,9 +47,7 @@ this.activatedRoute.params.subscribe(
 		this.oldUsername = this.user.username;
 		
 
-			})
-		
-	})
+	
   
 }
  update(){
@@ -91,21 +87,14 @@ this.activatedRoute.params.subscribe(
 	 }
 	 
  	
- 		
-	// }else {
-	// 	const updateUser : User ={
- // 			_id : this.user._id,
- // 			username: this.username,
- // 			password: this.user.password,
-	// 		firstName:this.firstName,
-	// 		lastName: this.lastName,
-	// 		email: this.email 
-	// 	}
-		
-	// 	this.usernameTaken = false;
-	// 	this.submitSuccess = true;
-	// 	this.userService.updateUser(this.uid,updateUser);
-
- // 	}
+ 
  }
+ logout() {
+ this.userService.logout()
+   .subscribe(
+     (data: any) => this.router.navigate(['/login'])
+
+   );
+
+}
 }

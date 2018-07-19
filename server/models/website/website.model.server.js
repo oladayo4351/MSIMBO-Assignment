@@ -18,7 +18,7 @@ function findWebsiteById(wid) {
 }
 
 function findAllWebsitesForUser(uid) {
-	return WebsiteModel.find({developerId: uid});
+	return WebsiteModel.find({developerId: uid}).sort({name:1, description:1});
 }
 
 

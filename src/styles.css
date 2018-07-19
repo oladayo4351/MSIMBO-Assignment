@@ -105,3 +105,20 @@ background-color: gray;
 .do-front{
 	z-index: 2;
 }
+
+.animate-bottom{
+	position: relative;
+	animation: animatebottom 0.5s;
+
+}
+
+@keyframes animatebotton{
+	from{bottom: -300px; opacity: 0;}
+	to{bottom:0; opacity: -1;}
+
+}
+
+.loading-iframe{
+	background:url(assets/loading7.gif) center center no-repeat;
+
+}

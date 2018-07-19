@@ -4,6 +4,7 @@ import { UserService } from '../../../services/user.service.client'
 import { User } from '../../../models/user.model.client'
 import { Router } from '@angular/router';
 import {ActivatedRoute  } from '@angular/router'
+import {SharedService} from '../../../services/shared.service.client'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,7 +22,7 @@ errorFlag: boolean;
 errorMsg = 'Invaild username or password!';
 
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router, private sharedService: SharedService) {
 
    }
 
@@ -32,17 +33,11 @@ errorMsg = 'Invaild username or password!';
  	this.username = this.loginForm.value.username;
  	this.password = this.loginForm.value.password;
 	
- this.userService.findUserByCredentials(this.username,this.password).subscribe(
-	(user: User)=>{
-		if(user){
-			this.router.navigate(['/user/'+user._id])
-		this.errorFlag = false;
+ this.userService.login(this.username,this.password).subscribe(
+	(data: any)=>{
+		this.sharedService.user = data;
+		this.router.navigate(['/user'])},
 
-		}else{
-			this.errorFlag = true;
-
-		}	
-},
 
 	(error: any) =>{
 		this.errorFlag = true;

@@ -8,6 +8,7 @@
 
 
 <div class= "container">
+	<div *ngIf="username.touched && username.invalid" class="alert alert-danger">Please Enter a Username</div>
 	<div *ngIf="usernameTaken" class="alert alert-danger">Username is already taken</div>
 	<div *ngIf="submitSuccess" class="alert alert-success">Updated successfully</div>
 	<form (ngSubmit) ='update()' id='profileForm' #f='ngForm'>

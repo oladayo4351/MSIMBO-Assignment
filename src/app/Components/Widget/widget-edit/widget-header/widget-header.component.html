@@ -11,6 +11,7 @@
 <form  class= "container-fluid" (ngSubmit)= 'update()' #f='ngForm' id='widgetForm'>
 	<div class="alert alert-danger" *ngIf="text.invalid && text.touched">Please enter text for the widget!</div>
 	<div class="alert alert-danger" *ngIf="size.invalid && size.touched">Please enter a size!</div>
+	<div class="alert alert-danger" *ngIf="size.invalid && size.touched">Please enter a size!</div>
 	
 		<div class=" form-group">
 			<label for="name">Name</label>
@@ -22,7 +23,14 @@
 		</div>
 		<div class="form-group">
 			<label for="size">Size</label>
-			<input ngModel='{{widget.size}}' #size='ngModel' type="number" name="size" class="form-control" required placeholder="Enter a widget size...">
+			<select ngModel='{{widget.size}}' #size='ngModel' type="number" name="size" class="form-control" required placeholder="Enter a widget size..."> 
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+			</select>
 		</div>
 		<button [disabled]='f.invalid' type="submit" class="btn btn-block btn-primary">Submit</button>
 		<button type="button" (click)='delete()' class="btn btn-block btn-danger">Delete</button>

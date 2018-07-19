@@ -29,8 +29,9 @@ import { PageService } from './services/page.service.client';
 import { WidgetService } from './services/widget.service.client';
 import { FlickrService } from './services/flickr.service.client'
 import { OmdbComponent } from './Components/omdb/omdb.component';
-
+import {SharedService} from './services/shared.service.client'
 import { FlickrImageSearchComponent } from './Components/Widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+import {AuthGuard} from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,14 @@ import { FlickrImageSearchComponent } from './Components/Widget/widget-edit/widg
     FormsModule,
     HttpModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService, FlickrService],
+  providers: [UserService, 
+  WebsiteService, 
+  PageService, 
+  WidgetService, 
+  FlickrService, 
+  SharedService,
+  AuthGuard],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

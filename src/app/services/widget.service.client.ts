@@ -12,18 +12,6 @@ baseUrl = environment.baseUrl;
 
   constructor(private http: Http) { }
 
-widgets: Widget[] = 
-[
-  { _id: "123",  widgetType: "HEADING", pageId: "321", size: 2, text: "GIZMODO"},
-  { _id: "234",  widgetType: "HEADING", pageId: "321", size: 4, text: "Lorem ipsum"},
-  { _id: "345", widgetType: "IMAGE", pageId: "321", width: "100%", url: "https://www.w3schools.com/w3css/img_lights.jpg"},
-  { _id: "456", widgetType: "HTML", pageId: "321", text: "<p>Lorem ipsum</p>"},
-  { _id: "567", widgetType: "HEADING", pageId: "321", size: 4, text: "Lorem ipsum"},
-  { _id: "678", widgetType: "YOUTUBE", pageId: "321", width: "100%", url: "https://youtu.be/AM2Ivdi9c4E" },
-  { _id: "789",  widgetType: "HTML", pageId: "321", text: "<p>Lorem ipsum</p>"}
-];
-
-
 
   createWidget(pageId:string, widget:Widget) {
       const url = this.baseUrl + '/api/page/' + pageId +'/widget';
@@ -78,14 +66,5 @@ widgets: Widget[] =
       ))
 }
 
-//   postWidget(widgetId:string, widget:Widget) {  
-//    const url = this.baseUrl + '/api/user/:uid/website/:wid/page/:pid/widget/'+widgetId+'/upload;
-//     return this.http.post(url,widget).pipe(map(
-//       (response: Response) => {
-//         return response.json();
-//       }
-
-//       ))
-// }
 
 }
