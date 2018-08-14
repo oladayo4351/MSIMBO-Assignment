@@ -28,6 +28,7 @@ create(type){
   const newWidget:Widget ={
     widgetType: type,
     pageId: this.pid
+
   }
 
 

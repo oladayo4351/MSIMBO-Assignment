@@ -26,6 +26,7 @@ widgets: Widget[];
       this.widgetService.findWidgetByPageId(this.pid).subscribe(
         (widgets: Widget[])=> {
           this.widgets = widgets
+          console.log(widgets)
                   }) 
      
   })
@@ -40,5 +41,13 @@ getYoutubeUrl(url){
   return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl); 
 
 }
+parseHTML(text) {
+  console.log(text)
+    var parsedText = text.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+    console.log(parsedText);
+    return parsedText;
+  }
+
+
 }
 

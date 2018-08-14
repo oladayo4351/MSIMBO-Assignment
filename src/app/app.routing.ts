@@ -19,6 +19,7 @@ import { WidgetYoutubeComponent } from './Components/Widget/widget-edit/widget-y
 import { OmdbComponent } from './Components/omdb/omdb.component';
 import {AuthGuard} from './services/auth-guard.service';
 import { FlickrImageSearchComponent } from './Components/Widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
+
 // Import all other components here 
 
 const APP_ROUTES : Routes = [

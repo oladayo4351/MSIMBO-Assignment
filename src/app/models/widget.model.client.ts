@@ -7,7 +7,9 @@ text?: string;
 width?: string;
 url?: string;
 name?: string;
-
+placeholder?: string;
+rows?: number;
+formatted?: boolean;
 
 constructor(_id,widgetType, pageId){
 	this._id = _id;

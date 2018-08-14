@@ -7,9 +7,7 @@ import { environment } from '../../environments/environment'
 @Injectable()
 
 export class PageService {
-
   baseUrl = environment.baseUrl;
-
   constructor(private http: Http) { }
 
 

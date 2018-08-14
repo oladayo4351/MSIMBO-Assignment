@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
+import { QuillEditorModule } from 'ngx-quill-editor';
 
 
 import { AppComponent } from './app.component';
@@ -32,6 +33,8 @@ import { OmdbComponent } from './Components/omdb/omdb.component';
 import {SharedService} from './services/shared.service.client'
 import { FlickrImageSearchComponent } from './Components/Widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import {AuthGuard} from './services/auth-guard.service';
+import { WidgetHtmlComponent } from './Components/Widget/widget-edit/widget-html/widget-html.component';
+import { WidgetTextComponent } from './Components/Widget/widget-edit/widget-text/widget-text.component';
 
 @NgModule({
   declarations: [
@@ -52,13 +55,16 @@ import {AuthGuard} from './services/auth-guard.service';
     WidgetImageComponent,
     WidgetYoutubeComponent,
     OmdbComponent,
-    FlickrImageSearchComponent
+    FlickrImageSearchComponent,
+    WidgetHtmlComponent,
+    WidgetTextComponent
   ],
   imports: [
     BrowserModule,
     Routing,
     FormsModule,
-    HttpModule
+    HttpModule,
+    QuillEditorModule
   ],
   providers: [UserService, 
   WebsiteService, 

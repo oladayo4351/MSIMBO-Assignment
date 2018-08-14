@@ -25,6 +25,7 @@ usernameError: boolean;
   }
 
 register(){
+	console.log("working")
 this.username = this.registerForm.value.username; 
 this.password = this.registerForm.value.password;
 this.verifyPassword = this.registerForm.value.verifyPassword;

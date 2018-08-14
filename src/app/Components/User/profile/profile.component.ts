@@ -5,6 +5,7 @@ import { User } from '../../../models/user.model.client';
 import { NgForm } from '@angular/forms';
 import {SharedService} from '../../../services/shared.service.client'
 import {Router } from '@angular/router'
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

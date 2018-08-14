@@ -28,10 +28,15 @@ loggedIn() {
        } else {
          this.router.navigate(['/login']);
          return false;
+
        }
 
      }
    ));
+
+ 
+ 
+
 }
 
 

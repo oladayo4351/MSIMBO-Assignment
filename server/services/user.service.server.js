@@ -29,7 +29,7 @@ app.post('/api/user', createUser);
 app.put('/api/user/:uid', updateUser);
 app.delete('/api/user/:uid', deleteUser);
 app.post ('/api/register', register);
-app.post  ('/api/login', passport.authenticate('local'), login);
+app.post ('/api/login', passport.authenticate('local'), login);
 app.post('/api/logout', logout);
 app.post('/api/loggedIn', loggedin);
 
