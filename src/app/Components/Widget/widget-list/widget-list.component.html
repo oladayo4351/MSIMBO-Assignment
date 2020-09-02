@@ -1,75 +1,106 @@
 <nav class="row navbar navbar-dark fixed-top do-gray">
-		<div class="container-fluid">
-			<div>
-			<a class="do-black float-left" routerLink='/user/{{uid}}/website/{{wid}}/page'><i class="fas fa-chevron-left"></i></a>
-			<a class="container-fluid do-no-underline do-font-white" routerLink='/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget'><b>Widgets</b></a>
-			</div>
-			<a routerLink='/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/new' class="do-black float-right"><i class="fas fa-plus"></i></a>
-		</div>	
+  <div class="container-fluid">
+    <div>
+      <a
+        class="do-black float-left"
+        routerLink="/user/{{ uid }}/website/{{ wid }}/page"
+        ><i class="fas fa-chevron-left"></i
+      ></a>
+      <a
+        class="container-fluid do-no-underline do-font-white"
+        routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget"
+        ><b>Widgets</b></a
+      >
+    </div>
+    <a
+      routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/new"
+      class="do-black float-right"
+      ><i class="fas fa-plus"></i
+    ></a>
+  </div>
 </nav>
 
-	<div  class="container-fluid">			
-		<div *ngFor='let widget of widgets'>
-			<div class="do-absolute-right do-front">
-					<a routerLink='/user/{{uid}}/website/{{wid}}/page/{{pid}}/widget/{{widget._id}}'><i class="fas fa-cog"></i></a>
-					<a href="#"><i class="fas fa-bars"></i></a>
-			</div>							
-		<div [ngSwitch]="widget.widgetType">
-			 <div *ngSwitchCase="'HEADING'">
-			
-			 	 <div [ngSwitch]='widget.size'>
-			 		<div *ngSwitchCase='1'><h6>{{widget.text}}</h6></div>
-			 		<div *ngSwitchCase='2'><h5>{{widget.text}}</h5></div>
-			 		<div *ngSwitchCase='3'><h4>{{widget.text}}</h4></div>
-			 		<div *ngSwitchCase='4'><h3>{{widget.text}}</h3></div>
-			 		<div *ngSwitchCase='5'><h2>{{widget.text}}</h2></div>
-			 		<div *ngSwitchCase='6'><h1>{{widget.text}}</h1></div>
-			 	</div> 
-			</div>
-		
-			 <div *ngSwitchCase="'IMAGE'">
-			 	<img [src]='widget.url' [style.width]='widget.width'>
-			 </div>
-			   <div *ngSwitchCase="'YOUTUBE'">
-					  	<div class="embed-responsive embed-responsive-16by9" >
-						  	<iframe [src]='this.getYoutubeUrl(widget.url)'
-						  		[style.width]= 'widget.width'
-						  		frameborder="0"
-						  		allowfullscreen 
-						  	></iframe>
-			  			</div>  
-			 	</div>
+<div class="container-fluid">
+  <div *ngFor="let widget of widgets">
+    <div class="do-absolute-right do-front">
+      <a
+        routerLink="/user/{{ uid }}/website/{{ wid }}/page/{{ pid }}/widget/{{
+          widget._id
+        }}"
+        ><i class="fas fa-cog"></i
+      ></a>
+      <a href="#"><i class="fas fa-bars"></i></a>
+    </div>
+    <div [ngSwitch]="widget.widgetType">
+      <div *ngSwitchCase="'HEADING'">
+        <div [ngSwitch]="widget.size">
+          <div *ngSwitchCase="1">
+            <h6>{{ widget.text }}</h6>
+          </div>
+          <div *ngSwitchCase="2">
+            <h5>{{ widget.text }}</h5>
+          </div>
+          <div *ngSwitchCase="3">
+            <h4>{{ widget.text }}</h4>
+          </div>
+          <div *ngSwitchCase="4">
+            <h3>{{ widget.text }}</h3>
+          </div>
+          <div *ngSwitchCase="5">
+            <h2>{{ widget.text }}</h2>
+          </div>
+          <div *ngSwitchCase="6">
+            <h1>{{ widget.text }}</h1>
+          </div>
+        </div>
+      </div>
 
-						<!-- HTML -->
-				<div *ngSwitchCase="'HTML'">
-				    <div [innerHTML]="parseHTML(widget.text)">
-				    </div>
-				</div>
+      <div *ngSwitchCase="'IMAGE'">
+        <img [src]="widget.url" [style.width]="widget.width" />
+      </div>
+      <div *ngSwitchCase="'YOUTUBE'">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe
+            [src]="this.getYoutubeUrl(widget.url)"
+            [style.width]="widget.width"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
 
-<div *ngSwitchCase="'Text'">
- <div *ngIf="widget.formatted">
-   <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
- </div>
+      <!-- HTML -->
+      <div *ngSwitchCase="'HTML'">
+        <div [innerHTML]="parseHTML(widget.text)"></div>
+      </div>
 
- <input *ngIf="!widget.formatted && (!widget.rows || widget.rows===1)"
-        placeholder="{{widget.placeholder}}" class="form-control"/>
+      <div *ngSwitchCase="'Text'">
+        <div *ngIf="widget.formatted">
+          <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
+        </div>
 
+        <input
+          *ngIf="!widget.formatted && (!widget.rows || widget.rows === 1)"
+          placeholder="{{ widget.placeholder }}"
+          class="form-control"
+        />
 
- <textarea *ngIf="!widget.formatted && (widget.rows > 1)"
-           rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
-           class="form-control">{{widget.text}}</textarea>
+        <textarea
+          *ngIf="!widget.formatted && widget.rows > 1"
+          rows="{{ widget.rows }}"
+          placeholder="{{ widget.placeholder }}"
+          class="form-control"
+          >{{ widget.text }}</textarea
+        >
+      </div>
+    </div>
+  </div>
 </div>
-			</div>
-		</div>	
-	</div>
 
-	
 <footer class="navbar navbar-dark do-gray fixed-bottom">
-	<div class="do-width">
-		<a href="#" class="do-black"> <i class="fas fa-play"></i></a>
-		<a href="#" class="do-black"> <i class="fas fa-eye"></i></a>
-		<a routerLink='/user/{{uid}}' class="float-right" >
-			<i class="fas fa-user"></i> </a> 
-	</div>
+  <div class="do-width">
+    <a href="#" class="do-black"> <i class="fas fa-play"></i></a>
+    <a href="#" class="do-black"> <i class="fas fa-eye"></i></a>
+    <a routerLink="/user" class="float-right"> <i class="fas fa-user"></i> </a>
+  </div>
 </footer>
-
