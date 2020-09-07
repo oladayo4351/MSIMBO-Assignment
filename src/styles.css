@@ -1,86 +1,88 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-	padding-top: 55px;
-	padding-bottom: 50px;
+body {
+  padding-top: 55px;
+  padding-bottom: 50px;
 }
 
 #bottom {
-	width: 100%;
-	bottom: 0px;
+  width: 100%;
+  bottom: 0px;
 }
 
-#center{
-	right: 100%;
+#center {
+  right: 100%;
 }
 
-.navbar-brand{
-	color: white;
+.navbar-brand {
+  color: white;
 }
-.do-font-white{
-	color: white;
-}
-
-.do-width{
-	width: 100%;
+.do-font-white {
+  color: white;
 }
 
-.do-left-padding{
-	padding-left: 10px; 
+.do-width {
+  width: 100%;
 }
 
-.do-no-underline:hover{
-	text-decoration: none;
+.do-left-padding {
+  padding-left: 10px;
 }
 
-.do-gray{
-background-color: gray;
+.do-no-underline:hover {
+  text-decoration: none;
+}
+.do-margin-right {
+  margin-right: 10px;
 }
 
-.do-black{
-	color: black;
+.do-gray {
+  background-color: gray;
 }
 
-.do-80-width{
-	width: 80%;
-}
-.do-absolute-right{
-	position: absolute;
-	right: 15px;
+.do-black {
+  color: black;
 }
 
-.do-front{
-	z-index: 2;
+.do-80-width {
+  width: 80%;
+}
+.do-absolute-right {
+  position: absolute;
+  right: 15px;
 }
 
-.do-border{
-	border: ridge;
+.do-front {
+  z-index: 2;
 }
 
-.do-hover a:hover{
-	text-decoration: none;
-	color: red;
+.do-border {
+  border: ridge;
 }
 
-.do-margin{
-	margin-top: 5px;
+.do-hover a:hover {
+  text-decoration: none;
+  color: red;
 }
 
-.video-responsive{
-    overflow:hidden;
-    padding-bottom:56.25%;
-    position:relative;
-    height:0;
-}
-.video-responsive iframe{
-    left:0;
-    top:0;
-    height:100%;
-    width:100%;
-    position:absolute;
-
+.do-margin {
+  margin-top: 5px;
 }
 
-.do-button{
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.do-button {
   background-color: transparent;
   display: inline-block;
   font-weight: 400;
@@ -91,34 +93,34 @@ background-color: gray;
   font-size: 1rem;
   line-height: 1.5;
   border-radius: 0.25rem;
- 
 }
 
-.do-blue{
-	color:#0089FF;
-	
+.do-blue {
+  color: #0089ff;
 }
-.do-blue :hover{
-	text-decoration: none;
-	
+.do-blue :hover {
+  text-decoration: none;
 }
-.do-front{
-	z-index: 2;
+.do-front {
+  z-index: 2;
 }
 
-.animate-bottom{
-	position: relative;
-	animation: animatebottom 0.5s;
-
+.animate-bottom {
+  position: relative;
+  animation: animatebottom 0.5s;
 }
 
-@keyframes animatebotton{
-	from{bottom: -300px; opacity: 0;}
-	to{bottom:0; opacity: -1;}
-
+@keyframes animatebotton {
+  from {
+    bottom: -300px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: -1;
+  }
 }
 
-.loading-iframe{
-	background:url(assets/loading7.gif) center center no-repeat;
-
+.loading-iframe {
+  background: url(assets/loading7.gif) center center no-repeat;
 }
