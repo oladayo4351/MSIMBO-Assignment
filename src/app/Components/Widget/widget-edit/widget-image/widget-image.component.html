@@ -25,7 +25,12 @@
   </div>
 </nav>
 
-<form (ngSubmit)="update()" #f="ngForm" id="widgetForm" class="container-fluid">
+<form
+  (ngSubmit)="update($event)"
+  #f="ngForm"
+  id="widgetForm"
+  class="container-fluid"
+>
   <div class="alert alert-danger" *ngIf="url.invalid && url.touched">
     Please enter a url!
   </div>
@@ -61,7 +66,6 @@
     <input
       ngModel="{{ widget.url }}"
       #url="ngModel"
-      required
       type="text"
       name="url"
       class="form-control"
@@ -74,7 +78,6 @@
     <input
       ngModel="{{ widget.width }}"
       #width="ngModel"
-      required
       type="text"
       name="width"
       class="form-control"
@@ -84,10 +87,23 @@
   <!-- <div class="form-group">
 			<label for="upload">Upload</label>
 			<input class="form-control" type="file" name="upload">
-		</div> -->
+    </div> -->
+  <!-- <form (ngSubmit)="uploadFile()" #f="ngForm" id="fileForm"> -->
+  <label class="form-group">Upload</label>
+  <input
+    onchange="$event"
+    (change)="fileChange($event)"
+    ngModel="$event"
+    #width="ngModel"
+    name="fileUpload"
+    type="file"
+    class="form-control"
+  />
+  <br />
+  <!-- </form> -->
 
-  <form
-    ngNoForm
+  <!-- <form
+    (ngSubmit)="update()" #f="ngForm" id="widgetForm" class="container-fluid"
     action="{{ baseUrl }}/api/user/{{ uid }}/website/{{ wid }}/page/{{
       pid
     }}/widget/{{ wgid }}/upload"
@@ -96,12 +112,18 @@
   >
     <div>
       <label class="form-group">Upload</label>
-      <input name="myFile" type="file" class="form-control" />
+      <input
+        ngModel="{{ widget.upload }}"
+        #width="ngModel"
+        name="myFile"
+        type="file"
+        class="form-control"
+      />
       <br />
 
       <button type="button" class="btn btn-block btn-secondary">Upload</button>
     </div>
-  </form>
+  </form> -->
   <br />
   <button
     class="btn btn-primary btn-block"
@@ -112,7 +134,7 @@
     Photos from Flickr
   </button>
   <button
-    type="button"
+    type="submit"
     [disabled]="f.invalid"
     class="btn btn-block btn-primary"
   >
