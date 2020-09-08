@@ -31,7 +31,7 @@
       ></a>
       <a href="#" class="do-margin-right"><i class="fas fa-bars"></i></a>
     </div>
-    <div [ngSwitch]="widget.widgetType">
+    <div class="do-margin-top" [ngSwitch]="widget.widgetType">
       <div *ngSwitchCase="'HEADING'">
         <div [ngSwitch]="widget.size">
           <div *ngSwitchCase="1">
@@ -55,10 +55,10 @@
         </div>
       </div>
 
-      <div *ngSwitchCase="'IMAGE'">
+      <div class="do-margin-top" *ngSwitchCase="'IMAGE'">
         <img [src]="widget.url" [style.width]="widget.width" />
       </div>
-      <div *ngSwitchCase="'YOUTUBE'">
+      <div class="do-margin-top" *ngSwitchCase="'YOUTUBE'">
         <div class="embed-responsive embed-responsive-16by9">
           <iframe
             [src]="this.getYoutubeUrl(widget.url)"
