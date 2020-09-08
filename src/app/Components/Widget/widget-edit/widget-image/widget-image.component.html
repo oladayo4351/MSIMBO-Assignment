@@ -31,12 +31,6 @@
   id="widgetForm"
   class="container-fluid"
 >
-  <div class="alert alert-danger" *ngIf="url.invalid && url.touched">
-    Please enter a url!
-  </div>
-  <div class="alert alert-danger" *ngIf="width.invalid && width.touched">
-    Please enter a width!
-  </div>
   <div class="form-group">
     <label for="name">Name</label>
     <input
@@ -62,18 +56,6 @@
   </div>
 
   <div class="form-group">
-    <label for="url">URL</label>
-    <input
-      ngModel="{{ widget.url }}"
-      #url="ngModel"
-      type="text"
-      name="url"
-      class="form-control"
-      placeholder="https://www.image.com"
-    />
-  </div>
-
-  <div class="form-group">
     <label for="width">Width</label>
     <input
       ngModel="{{ widget.width }}"
@@ -84,22 +66,52 @@
       placeholder="100%"
     />
   </div>
-  <!-- <div class="form-group">
+  <div [ngSwitch]="imageType">
+    <div *ngSwitchCase="'url'" class="form-group do-short-width">
+      <div class="alert alert-danger" *ngIf="url.invalid && url.touched">
+        Please enter a url!
+      </div>
+      <div class="alert alert-danger" *ngIf="width.invalid && width.touched">
+        Please enter a width!
+      </div>
+
+      <label for="url">URL</label>
+      <br />
+      <input
+        ngModel="{{ widget.url }}"
+        #url="ngModel"
+        type="text"
+        name="url"
+        class="do-image-input"
+        placeholder="https://www.image.com"
+      />
+      <button (click)="changeImageStatus($event)" class="btn btn-danger btn">
+        Upload a file
+      </button>
+    </div>
+
+    <!-- <div class="form-group">
 			<label for="upload">Upload</label>
 			<input class="form-control" type="file" name="upload">
     </div> -->
-  <!-- <form (ngSubmit)="uploadFile()" #f="ngForm" id="fileForm"> -->
-  <label class="form-group">Upload</label>
-  <input
-    onchange="$event"
-    (change)="fileChange($event)"
-    ngModel="$event"
-    #width="ngModel"
-    name="fileUpload"
-    type="file"
-    class="form-control"
-  />
-  <br />
+    <!-- <form (ngSubmit)="uploadFile()" #f="ngForm" id="fileForm"> -->
+
+    <div *ngSwitchCase="'file'" class="form-group do-short-width">
+      <label>Upload</label>
+      <br />
+      <input
+        ngModel="$event"
+        name="fileUpload"
+        type="file"
+        class="do-image-input"
+      />
+
+      <button (click)="changeImageStatus($event)" class="btn btn-success btn">
+        Enter a Url
+      </button>
+    </div>
+    <span *ngSwitchDefault> Not working</span>
+  </div>
   <!-- </form> -->
 
   <!-- <form
