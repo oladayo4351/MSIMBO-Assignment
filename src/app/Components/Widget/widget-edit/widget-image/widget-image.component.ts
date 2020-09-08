@@ -8,8 +8,6 @@ import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { HttpClient } from "@angular/common/http";
 import * as AWS from "aws-sdk/global";
 import * as S3 from "aws-sdk/clients/s3";
-
-//require("aws-sdk/dist/aws-sdk");
 @Component({
   selector: "app-widget-image",
   templateUrl: "./widget-image.component.html",
@@ -66,8 +64,8 @@ export class WidgetImageComponent implements OnInit {
 
     const contentType = file.type;
     const bucket = new S3({
-      accessKeyId: "AKIASF6DDRF634TMW4P3",
-      secretAccessKey: "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",
+      accessKeyId: environment.accessKeyId,
+      secretAccessKey: environment.secretAccessKey,
       region: "us-west-1",
     });
     const params = {
