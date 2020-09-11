@@ -6,8 +6,9 @@ import { NgForm } from "@angular/forms";
 import { environment } from "../../../../../environments/environment";
 import { Http, Response, Headers, RequestOptions } from "@angular/http";
 import { HttpClient } from "@angular/common/http";
-import * as AWS from "aws-sdk/global";
+//import * as AWS from "aws-sdk/global";
 import * as S3 from "aws-sdk/clients/s3";
+import { SecretKeysService } from "../../../../services/env.service.client";
 @Component({
   selector: "app-widget-image",
   templateUrl: "./widget-image.component.html",
@@ -30,6 +31,8 @@ export class WidgetImageComponent implements OnInit {
   myFile: File;
   baseUrl: string;
   fileUrl: string;
+  accessKeyId: string;
+  secretAccessKey: string;
 
   widget: Widget = {
     widgetType: "",
@@ -41,12 +44,18 @@ export class WidgetImageComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private secretServiceKeys: SecretKeysService,
     private widgetService: WidgetService,
     private router: Router,
     private http: HttpClient
   ) {}
 
   ngOnInit() {
+    this.secretServiceKeys.getSecretKeys().subscribe((keys: any) => {
+      this.accessKeyId = JSON.parse(keys._body).accessKeyId;
+      this.secretAccessKey = JSON.parse(keys._body).secretAccessKey;
+    });
+
     this.activatedRoute.params.subscribe((params) => {
       this.uid = params["uid"];
       this.wid = params["wid"];
@@ -118,15 +127,14 @@ export class WidgetImageComponent implements OnInit {
   update(e) {
     if (this.imageType === "file") {
       let file = e.target[4].files[0];
-
       const contentType = file.type;
       const bucket = new S3({
-        accessKeyId: environment.accessKeyId,
-        secretAccessKey: environment.secretAccessKey,
+        accessKeyId: this.accessKeyId,
+        secretAccessKey: this.secretAccessKey,
         region: "us-west-1",
       });
       const params = {
-        Bucket: "web-maker",
+        Bucket: "web-maker0212690301",
         Key: file.name,
         Body: file,
         ACL: "public-read",
@@ -142,20 +150,16 @@ export class WidgetImageComponent implements OnInit {
         newSubmit: this.newSubmit,
         router: this.router,
       };
-
       // let widgetService = this.widgetService.updateWidget();
       // let widgetForm = this.widgetForm.value;
       var widgetService = this.widgetService.updateWidget.toString();
-
       bucket.upload(params, function (err, data) {
         if (err) {
           console.log("There was an error uploading your file: ", err);
           return false;
         }
         //  console.log("Successfully uploaded file.", data);
-
         var fileUrl = data.Location;
-
         this.name = params.widgetForm.name;
         //this.url = this.widgetForm.value.url;
         this.url = this.fileUrl;
@@ -170,9 +174,7 @@ export class WidgetImageComponent implements OnInit {
           text: this.text,
           name: this.name,
         };
-
         params.newSubmit(params);
-
         params.widgetService
           .updateWidget(params.wgid, updateWidget)
           .subscribe((widget: Widget) => {});
@@ -193,7 +195,6 @@ export class WidgetImageComponent implements OnInit {
         text: this.text,
         name: this.name,
       };
-
       this.widgetService
         .updateWidget(this.wgid, updateWidget)
         .subscribe((widget: Widget) => {

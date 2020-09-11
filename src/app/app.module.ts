@@ -24,6 +24,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { Routing } from "./app.routing";
 
 import { UserService } from "./services/user.service.client";
+import { SecretKeysService } from "./services/env.service.client";
 import { WebsiteService } from "./services/website.service.client";
 import { PageService } from "./services/page.service.client";
 import { WidgetService } from "./services/widget.service.client";
@@ -68,6 +69,7 @@ import { WidgetTextComponent } from "./Components/Widget/widget-edit/widget-text
   ],
   providers: [
     UserService,
+    SecretKeysService,
     WebsiteService,
     PageService,
     WidgetService,
