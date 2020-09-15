@@ -1,5 +1,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
+Navigate through the application to create websites, pages and widgets. Upload and save photos, videos, and text for viewing and for memories.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
