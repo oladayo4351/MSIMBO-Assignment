@@ -32,9 +32,6 @@ export class WidgetListComponent implements OnInit {
         .findWidgetByPageId(this.pid)
         .subscribe((widgets: Widget[]) => {
           this.widgets = widgets;
-          console.log(widgets);
-          console.log(widgets[widgets.length - 1].formatted);
-          console.log(widgets[widgets.length - 1]);
         });
     });
   }
@@ -48,9 +45,8 @@ export class WidgetListComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
   }
   parseHTML(text) {
-    console.log(text);
     var parsedText = text.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-    console.log(parsedText);
+
     return parsedText;
   }
 }

@@ -61,7 +61,7 @@ export class WidgetTextComponent implements OnInit {
     if (this.widgetForm.value.formatted === undefined) {
       this.formatted = false;
     }
-    console.log(this.formatted);
+
     const updateWidget: Widget = {
       _id: this.wgid,
       widgetType: this.widget.widgetType,
@@ -72,7 +72,6 @@ export class WidgetTextComponent implements OnInit {
       size: this.rows,
       formatted: this.formatted,
     };
-    console.log(updateWidget);
 
     this.widgetService
       .updateWidget(this.wgid, updateWidget)

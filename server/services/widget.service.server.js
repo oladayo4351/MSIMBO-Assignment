@@ -74,10 +74,9 @@ module.exports = function (app) {
   function updateWidget(req, res) {
     let wgid = req.params["wgid"];
     let widget = req.body;
-    console.log(widget);
+
     widgetModel.updateWidget(wgid, widget).then((data) => {
       res.json(data);
-      console.log(data);
     });
   }
 

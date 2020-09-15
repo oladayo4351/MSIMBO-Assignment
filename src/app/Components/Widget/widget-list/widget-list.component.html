@@ -56,7 +56,23 @@
       </div>
 
       <div class="do-margin-top" *ngSwitchCase="'TEXT'">
-        <div>{{ widget.text }}</div>
+        <div [ngSwitch]="widget.size">
+          <div *ngSwitchCase="1">
+            <div style="font-size: xx-small">{{ widget.text }}</div>
+          </div>
+          <div *ngSwitchCase="2">
+            <div style="font-size: x-small">{{ widget.text }}</div>
+          </div>
+          <div *ngSwitchCase="3">
+            <div style="font-size: small">{{ widget.text }}</div>
+          </div>
+          <div *ngSwitchCase="4">
+            <div style="font-size: medium">{{ widget.text }}</div>
+          </div>
+          <div *ngSwitchCase="5">
+            <div style="font-size: large">{{ widget.text }}</div>
+          </div>
+        </div>
       </div>
       <div class="do-margin-top" *ngSwitchCase="'IMAGE'">
         <img [src]="widget.url" [style.width]="widget.width" />
