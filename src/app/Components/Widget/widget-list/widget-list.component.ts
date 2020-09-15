@@ -32,6 +32,9 @@ export class WidgetListComponent implements OnInit {
         .findWidgetByPageId(this.pid)
         .subscribe((widgets: Widget[]) => {
           this.widgets = widgets;
+          console.log(widgets);
+          console.log(widgets[widgets.length - 1].formatted);
+          console.log(widgets[widgets.length - 1]);
         });
     });
   }

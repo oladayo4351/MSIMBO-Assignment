@@ -31,7 +31,7 @@
       ></a>
       <a href="#" class="do-margin-right"><i class="fas fa-bars"></i></a>
     </div>
-    <div class="do-margin-top" [ngSwitch]="widget.widgetType">
+    <div class="do-margin-top do-margin-bottom" [ngSwitch]="widget.widgetType">
       <div *ngSwitchCase="'HEADING'">
         <div [ngSwitch]="widget.size">
           <div *ngSwitchCase="1">
@@ -55,6 +55,9 @@
         </div>
       </div>
 
+      <div class="do-margin-top" *ngSwitchCase="'TEXT'">
+        <div>{{ widget.text }}</div>
+      </div>
       <div class="do-margin-top" *ngSwitchCase="'IMAGE'">
         <img [src]="widget.url" [style.width]="widget.width" />
       </div>
@@ -72,26 +75,6 @@
       <!-- HTML -->
       <div *ngSwitchCase="'HTML'">
         <div [innerHTML]="parseHTML(widget.text)"></div>
-      </div>
-
-      <div *ngSwitchCase="'Text'">
-        <div *ngIf="widget.formatted">
-          <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
-        </div>
-
-        <input
-          *ngIf="!widget.formatted && (!widget.rows || widget.rows === 1)"
-          placeholder="{{ widget.placeholder }}"
-          class="form-control"
-        />
-
-        <textarea
-          *ngIf="!widget.formatted && widget.rows > 1"
-          rows="{{ widget.rows }}"
-          placeholder="{{ widget.placeholder }}"
-          class="form-control"
-          >{{ widget.text }}</textarea
-        >
       </div>
     </div>
   </div>

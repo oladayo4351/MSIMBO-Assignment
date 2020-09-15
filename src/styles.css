@@ -37,6 +37,9 @@ body {
 .do-margin-top {
   margin-top: 50px;
 }
+/* .do-margin-bottom {
+  margin-bottom: 10px;
+} */
 .do-short-width {
   width: 50%;
   /* display: inline; */

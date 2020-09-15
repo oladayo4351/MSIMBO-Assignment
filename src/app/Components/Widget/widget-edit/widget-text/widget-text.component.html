@@ -29,20 +29,21 @@
 <form (ngSubmit)="update()" #f="ngForm" id="widgetForm" class="container-fluid">
   <div class="form-group">
     <label for="name">Text</label>
-    <input
+    <textarea
       ngModel="{{ widget.text }}"
       #name="ngModel"
       type="text"
-      name="name"
+      name="text"
       class="form-control"
-      placeholder="Enter a widget name..."
-    />
+      placeholder="Enter a widget text..."
+    ></textarea>
   </div>
   <div class="form-group">
     <label for="text">Rows</label>
     <input
       placeholder="Enter the amount of rows"
-      ngModel="widget.rows"
+      ngModel="{{ widget.size }}"
+      name="rows"
       class="form-control"
       type="number"
     />
@@ -61,7 +62,7 @@
     />
   </div>
 
-  <label for="formatted">Formatted</label>
+  <!-- <label for="formatted">Formatted</label>
 
   <input
     [(ngModel)]="widget.formatted"
@@ -69,7 +70,7 @@
     id="formatted"
     name="formatted"
     #formatted="ngModel"
-  />
+  /> -->
 
   <br />
 
